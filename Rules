@@ -1,0 +1,75 @@
+//The following code shows exactly what not to do.
+
+import java.util.*;
+public class Main8 {
+	
+	int i = 5; //Instance variable
+	static int k = 2; //All objects can 'see' k.
+	public static void main(String[] args) {
+		
+		int j = i; //Wrong because i is an instance variable.
+		
+		m1(); //Wrong because m1() is an instance method.
+	
+	
+	}
+	
+	public void m1() {
+		//Correct since instance and static variables and methods
+		// can be used in an instance method.
+		
+		i = i + k + m2(i,k);
+	}
+	
+	public static int m2(int i , int j) {
+		return (int) (Math.pow(i, j));
+	}
+	
+
+}
+*/
+Instance method
+1. can invoke an instance method.
+2. can access an instance data field.
+3. can invoke a static method.
+4. can access a static data field.
+
+Static method
+1. cannot invoke an instance method.
+2. cannot access an instance data field.
+3. can invoke a static method.
+4. can access a static data field.
+/*
+
+//Fixed code
+
+/*
+import java.util.*;
+public class Main8 {
+	
+	int i = 5; //Instance variable.
+	static int k = 2; //All objects can 'see' k because of the keyword 'static'.
+	public static void main(String[] args) {
+		Main8 obj = new Main8();
+		
+		int j = obj.i; //OK, obj.i accesses the object's instance.
+		
+		obj.m1(); // OK, obj.m1() invoked the objects instance method.
+	
+	
+	}
+	
+	public void m1() {
+		//Correct since instance and static variables and methods.
+		// can be used in an instance method.
+		
+		i = i + k + m2(i,k);
+	}
+	
+	public static int m2(int i , int j) {
+		return (int) (Math.pow(i, j));
+	}
+	
+
+}
+/*
